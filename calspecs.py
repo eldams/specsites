@@ -46,10 +46,6 @@ for s in lexicon_sites:
 		if proba > 0:
 			indicespec = math.log(proba, 10)
 			indicespec *= sign
-			# print(w, lexicon_sites[s][w], lexicon_all[w], freq_exp)
 			lexicon_specs[s][w] = indicespec
-		# else:
-		# 	indicespec = scipy.stats.hypergeom.logpmf(lexicon_sites[s][w], total, lexicon_all[w], site_total)/math.log(10)
-		# 	print('*** error computing specificity for', w, proba, '***')
 	for w, spec in sorted(lexicon_specs[s].items(), key=lambda x: -abs(x[1]))[:20]:
 		print(' - word:', w, '(specificity:', spec, 'site:', lexicon_sites[s][w], ', total:', lexicon_all[w], ')')

@@ -4,16 +4,18 @@ treetagger=~/Applications/TreeTagger/cmd/tree-tagger-english
 
 function scrap {
 	echo "Scrapping"
-	rm data/sites/wget.log
+	mkdir -p data/sites
+	rm -f data/sites/wget.log
 	for site in $sites; do
 		echo "- $site"
-		wget -P data/sites -r $site >> data/sites/wget.log 2>&1
+		wget -r -U bash -P data/sites -r $site >> data/sites/wget.log 2>&1
 	done
 	find . -regex '.* .*' -delete
 }
 
 function extracttxt {
 	echo "Extracting"
+	mkdir -p data/texts
 	for site in $(find data/sites -type d -depth 1); do
 		sitename=$(basename $site | sed 's/www.//' | sed 's/.fr//')
 		echo "- $sitename"

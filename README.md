@@ -20,9 +20,7 @@ Current version, as an example, compares Republican's (gop.com) vs Democrat's we
 - Configure TreeTagger command in `specsites.sh`
 - Execute `bash specsites.sh`
 
-## Short description
-
-Main steps of the script are
+## Main steps of the script
 
 - Download of websites (`wget`)
 - Find texts from sites (remove code / tags using ad-hoc regular expressions)

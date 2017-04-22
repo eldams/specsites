@@ -4,8 +4,8 @@ import sys, glob, os, collections, math, scipy.stats
 
 print('Retrieve frequencies per site')
 lexicon_sites = {}
-for filename in glob.glob("Donnees/Textes/*.words.txt"):
-	sitename = os.path.basename(filename)[:-len('.words.txt')]
+for filename in glob.glob("data/texts/*.lemmas.txt"):
+	sitename = os.path.basename(filename)[:-len('.lemmas.txt')]
 	print('- ', sitename)
 	lexicon_sites[sitename] = collections.Counter(open(filename).read().split(' '))
 

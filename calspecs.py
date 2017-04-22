@@ -30,18 +30,19 @@ total = sum(lexicon_all.values())
 print('Computing specificities')
 specneg = False
 lexicon_specs = {}
-for s in lexicon_sites:
+for s in sorted(lexicon_sites.keys()):
 	lexicon_specs[s] = {}
 	print('Site ', s, '(', sites_freqs[s], ' tokens), showing 20 most specifics')
 	for w in words:
 		proba = -1
 		sign = 1
-		freq_exp = lexicon_all[w]*sites_freqs_max/total
+		site_freq = sum(lexicon_sites[s].values())
+		freq_exp = lexicon_all[w]*site_freq/total
 		if lexicon_sites[s][w] > freq_exp:
-			proba = scipy.stats.hypergeom.sf(lexicon_sites[s][w], total, lexicon_all[w], sites_freqs_max)
+			proba = scipy.stats.hypergeom.sf(lexicon_sites[s][w], total, lexicon_all[w], site_freq)
 			sign = -1
 		elif specneg:
-			proba = scipy.stats.hypergeom.cdf(lexicon_sites[s][w], total, lexicon_all[w], sites_freqs_max)
+			proba = scipy.stats.hypergeom.cdf(lexicon_sites[s][w], total, lexicon_all[w], site_freq)
 		spec = 0
 		if proba > 0:
 			indicespec = math.log(proba, 10)

@@ -48,8 +48,8 @@ function specificities {
 }
 
 sites=$(cat sites.lst)
-# scrap
-# extracttxt
-# preprocess
+scrap
+extracttxt
+preprocess
 specificities
 cat calspecs.log

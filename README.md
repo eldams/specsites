@@ -2,9 +2,9 @@
 
 ## Short description
 
-This is a beta version of a quite simple a straightforward software that does compute "specificities" for text within websites. In  short: it extracts vocabulary specific sub-corpora within a corpus using [hypergeometric distribution](https://en.wikipedia.org/wiki/Hypergeometric_distribution).
+This is a beta version of a quite simple and straightforward software that does compute "specificities" for text within websites. In  short: it extracts specific sub-corpora vocabulary accross web sites using [hypergeometric distribution](https://en.wikipedia.org/wiki/Hypergeometric_distribution).
 
-Current version, as an example, compares Republican's (gop.com) vs Democrat's websites (takes 1 day - gop.com is quite big):
+For instance, as of 21 April 2017, the comparison of Republican's (gop.com) vs Democrat's websites (scraping takes around 24h - gop.com is quite big) gives following specificities:
 
 - **gop.com**: (1267342 lemmas) : *deficit* (287.02), *insurance* (285.96), *president* (280.52), *year* (263.09), *speech* (244.38), *premium* (236.14), *thing* (234.38), *tell* (230.46), *give* (224.32), *administration* (221.76), *concern* (221.40), *official* (219.76), *estimate* (211.88), *cnn* (206.11), *month* (200.40), *deal* (185.93), *come* (179.60), *cost* (178.30), *nomination* (175.86), *aide* (174.01)
 - **democrats.org** (28332 lemmas) : *intern* (316.15), *registration* (293.54), *resource* (285.62), *voting* (285.47), *support* (283.40), *member* (281.62), *country* (260.84), *expand* (238.00), *democracy* (229.78), *family* (226.82), *gender* (226.59), *immigrant* (225.35), *promote* (219.12), *retirement* (217.55), *party* (216.84), *election* (211.32), *voter* (208.85), *violence* (204.64), *equality* (199.70), *development* (194.99)

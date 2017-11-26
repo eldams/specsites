@@ -48,7 +48,11 @@ function specificities {
 }
 
 sites=$(cat sites.lst)
+<<<<<<< HEAD
 # scrap
+=======
+scrap
+>>>>>>> b05c55729be341f92fb09c7e018e30cc8a0d61f7
 extracttxt
 preprocess
 specificities

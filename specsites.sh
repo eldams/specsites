@@ -1,6 +1,6 @@
 #!/bin/bash
 
-treetagger=~/Applications/TreeTagger/cmd/tree-tagger-french
+treetagger=~/Applications/TreeTagger/cmd/tree-tagger-english
 
 function scrap {
 	echo "Scrapping"
@@ -16,14 +16,14 @@ function scrap {
 function extracttxt {
 	echo "Extracting"
 	mkdir -p data/texts
-	for site in $(find data/sites -mindepth 1 -maxdepth 1 -type d); do
-		sitename=$(basename $site)
+	for site in $(find data/sites -type d -depth 1); do
+		sitename=$(basename $site | sed 's/www.//' | sed 's/.fr//')
 		echo "- $sitename"
 		find $site -type f | grep -Ev "\.(css|png|gif|jpg|js)" | xargs grep -ilI "html" | xargs cat | tr '\n\r\t' ' ' |
 			perl -pe 's#<(head|link|script|code|style) [^>]*>.*?</\1>##gi' | # Nodes to be removed (content also removed)
 			perl -pe 's#</?(a|strong|em|b|i|span|img|big|small|abbr|acronym|q|font).*?>##gi' | # Tags to be removed (keep content)
 			perl -pe 's/<[^>]*>/\n/g' | # Remaining tags as sentence separators
-			perl -ne 'use HTML::Entities; print decode_entities($_);' |
+			python3 -c 'import html, sys; [print(html.unescape(l), end="") for l in sys.stdin]' |
 			grep -v '{' | grep -E '( [a-z]+.*){5}' |
 			sed 's/  */ /g' | sed 's/^ *//' | sed 's/ *$//' |
 			sort | uniq -c | sort -gr > data/texts/$sitename.sentences.txt
@@ -49,7 +49,7 @@ function specificities {
 
 sites=$(cat sites.lst)
 # scrap
-extracttxt
-preprocess
+# extracttxt
+# preprocess
 specificities
-cat data/calspecs.log
+cat calspecs.log
